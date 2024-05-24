@@ -1,0 +1,23 @@
+#profile {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, green, greenyellow);
+    border-radius: 25px;
+    padding: 5px;
+}
+
+#profile #profile-image {
+    border-radius: 25px;
+    margin-right: 50px;
+}
+
+#profile #profile-name {
+    color: darkgreen;
+    font-size: 100px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#contact {
+    background-color: red;
+    text-align: center;
+}
