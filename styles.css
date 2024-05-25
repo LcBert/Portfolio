@@ -1,8 +1,19 @@
+body {
+    background-color: black;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#page {
+    border: 1px solid white;
+    border-radius: 25px;
+    background-image: linear-gradient(to bottom right, black, rgb(20, 19, 19), black);
+}
+
 #profile {
     display: flex;
     align-items: center;
-    background-image: linear-gradient(to bottom right, green, greenyellow);
-    border-radius: 25px;
+    border-bottom: 10px;
     padding: 5px;
 }
 
@@ -12,12 +23,29 @@
 }
 
 #profile #profile-name {
-    color: darkgreen;
+    color: gray;
     font-size: 100px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+#about-me {
+    padding: 5% 20% 5% 20%;
+}
+
+#about-me .title {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#about-me .description {
+    color: white;
+    padding-left: 5%;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 #contact {
-    background-color: red;
+    background-color: gray;
+    border-radius: 10px;
     text-align: center;
 }
