@@ -17,6 +17,12 @@ body {
     padding: 5px;
 }
 
+@media screen and (max-width:1100px) {
+    #profile {
+        display: block;
+    }
+}
+
 #profile #profile-image {
     border-radius: 25px;
     margin-right: 50px;
@@ -26,10 +32,17 @@ body {
     color: gray;
     font-size: 100px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-left: 30px;
+}
+
+@media screen and (max-width:700px) {
+    #profile #profile-name {
+        font-size: 50px;
+    }
 }
 
 #about-me {
-    padding: 5% 20% 5% 20%;
+    padding: 5% 15% 5% 15%;
 }
 
 #about-me .title {
