@@ -20,6 +20,7 @@ body {
 @media screen and (max-width:1100px) {
     #profile {
         display: block;
+        text-align: center;
     }
 }
 
@@ -32,7 +33,6 @@ body {
     color: gray;
     font-size: 100px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    padding-left: 30px;
 }
 
 @media screen and (max-width:700px) {
