@@ -7,7 +7,7 @@ body {
 #page {
     border: 1px solid white;
     border-radius: 25px;
-    background-image: linear-gradient(to bottom right, black, rgb(20, 19, 19), black);
+    background-image: linear-gradient(to bottom right, black, rgb(50, 50, 50), black);
 }
 
 #profile {
@@ -19,6 +19,8 @@ body {
 
 #profile #profile-image {
     border-radius: 25px;
+    width: 350px;
+    height: auto;
     margin-right: 50px;
 }
 
@@ -35,7 +37,7 @@ body {
     }
 
     #profile #profile-image {
-        margin-right: 0%;
+        margin-right: 0;
     }
 }
 
@@ -45,8 +47,14 @@ body {
     }
 }
 
+@media screen and (max-width:450px) {
+    #profile #profile-image {
+        width: 250px;
+    }
+}
+
 #about-me {
-    padding: 5% 15% 5% 15%;
+    padding: 5% 10% 5% 10%;
 }
 
 #about-me .title {
@@ -57,7 +65,7 @@ body {
 #about-me .description {
     color: white;
     padding-left: 5%;
-    font-size: 20px;
+    font-size: 25px;
     font-family: 'Courier New', Courier, monospace;
 }
 
