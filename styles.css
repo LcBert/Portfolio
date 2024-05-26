@@ -17,13 +17,6 @@ body {
     padding: 5px;
 }
 
-@media screen and (max-width:1100px) {
-    #profile {
-        display: block;
-        text-align: center;
-    }
-}
-
 #profile #profile-image {
     border-radius: 25px;
     margin-right: 50px;
@@ -33,6 +26,17 @@ body {
     color: gray;
     font-size: 100px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@media screen and (max-width:1100px) {
+    #profile {
+        display: block;
+        text-align: center;
+    }
+
+    #profile #profile-image {
+        margin-right: 0%;
+    }
 }
 
 @media screen and (max-width:700px) {
