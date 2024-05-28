@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Luca Bertaggia - Porfolio</title>
 </head>
 
 <body>
     <div id="page">
-        <div id="profile">
+        <header id="profile">
             <img id="profile-image" src="img/Foto Profilo.png" alt="foto profilo" height="500">
             <h1 id="profile-name">Luca Bertaggia</h1>
-        </div>
+        </header>
 
         <hr>
 
@@ -46,7 +47,7 @@
                         <h4 class="title">Tecnologie Utilizzate</h4>
                         <ul class="description">
                             <li><b>Linguaggio di Programmazione:</b> Python</li>
-                            <li><b>Interfaccia Grafica:</b> CustomTkinter</li>
+                            <li><b>Libreria Interfaccia Grafica:</b> CustomTkinter</li>
                             <li><b>Libreria per il Download:</b> Pytube</li>
                         </ul>
                     </div>
@@ -64,6 +65,7 @@
                             <li>Possibilità di rimuovere i link inseriti</li>
                             <li>Possibilità di cambiare il nome del file scaricato</li>
                             <li>Visualizzare la percentuale scaricata per ogni video</li>
+                            <li>Threading e programmazione parallela per il download contemporaneo di più video</li>
                             <li>Messaggio di errore in caso di inserimento di url errato</li>
                         </ul>
                     </div>
@@ -71,11 +73,9 @@
                     <div class="project-description">
                         <h4 class="title">Link</h4>
                         <p class="description">
-                            <b>Github Repository:
-                                <a href="https://github.com/LcBert/Youtube-Downloader" target="_blank">
-                                    https://github.com/LcBert/Youtube-Downloader
-                                </a>
-                            </b>
+                            <a href="https://github.com/LcBert/Youtube-Downloader" target="_blank">
+                                <i class="fa fa-github"> </i>
+                            </a>
                         </p>
                     </div>
                 </article>
@@ -83,14 +83,10 @@
         </div>
     </div>
 
-    <div id="contact">
+    <footer id="contact">
         <h1>Contact Me</h1>
-        <p id="contact-email">Email: luca.bertaggia82@gmail.com</p>
-        <p id="contact-instagram">
-            Instagram: <a href="https://www.instagram.com/luca___bert/" target="_blank">luca___bert</a>
-        </p>
-    </div>
-
+    </footer>
 </body>
+
 
 <!-- https://www.w3schools.com/icons/icons_reference.asp -->
