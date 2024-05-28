@@ -71,7 +71,7 @@ body {
 
 @media screen and (max-width:450px) {
     #profile #profile-image {
-        width: 250px;
+        width: 95%;
     }
 }
 
@@ -86,29 +86,37 @@ body {
 
 #about-me .description {
     color: white;
-    padding-left: 5%;
     font-size: 25px;
     font-family: 'Courier New', Courier, monospace;
+    padding-left: 5%;
 }
 
-#about-me #my-project .project {
-    text-align: center;
+#about-me #project .project-article {
+    margin-left: 5%;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 2%;
 }
 
-#about-me #my-project .project h1 {
+#about-me #project .project-article h1 {
     color: white;
-    font-size: 50px;
-    text-align: center;
-}
-
-#about-me #my-project .project h1 .project-link {
     font-size: 40px;
-    text-decoration: none;
-    color: blue;
+    text-align: center;
+    margin: 0;
 }
 
-#about-me #my-project hr {
-    width: 70%;
+#about-me #project .project-article .project-description .title {
+    color: white;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#about-me #project .project-article .project-description .description {
+    color: white;
+    font-size: 17px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: -15px;
+    margin-left: 30px;
 }
 
 #contact {
