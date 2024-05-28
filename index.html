@@ -19,29 +19,56 @@
         <hr>
 
         <div id="about-me">
-            <div id="presentation">
+            <section id="presentation">
                 <h1 class="title">Chi Sono?</h1>
                 <p class="description">
                     Mi chiamo Luca Bertaggia, sono uno studente presso l'università di Ferrara frequentante il corso di
                     studi di informatica.
                 </p>
-            </div>
+            </section>
 
             <hr>
 
-            <div id="my-project">
+            <section id="project">
                 <h1 class="title">I Miei Progetti</h1>
-                <p class="description">Di seguito un elenco dei miei progetti</p>
-                <div class="project">
-                    <h1>Youtube Downloader
-                        <a href="#" target="_blank" class="project-link">
-                            <i class="fa fa-external-link"></i>
-                        </a>
-                    </h1>
-                </div>
+                <article class="project-article">
+                    <h1 class="project-title">Youtube Downloader</h1>
+                    <div class="project-description">
+                        <h4 class="title">Descrizione</h4>
+                        <p class="description">
+                            Un'applicazione utilizzata per scaricare video e audio da youtube tramite la libreria Pytube
+                            in modo semplice e intuitivo con un'interfaccia grafica realizzata con CustomTkinter
+                            facilmente utilizzabile anche da utenti meno esperti.
+                        </p>
+                    </div>
 
-                <hr>
-            </div>
+                    <div class="project-description">
+                        <h4 class="title">Tecnologie Utilizzate</h4>
+                        <ul class="description">
+                            <li><b>Linguaggio di Programmazione:</b> Python</li>
+                            <li><b>Interfaccia Grafica:</b> CustomTkinter</li>
+                            <li><b>Libreria per il Download:</b> Pytube</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-description">
+                        <h4 class="title">Funzionalità</h4>
+                        <ul class="description">
+                            <li>Scaricare video o audio da youtube inserendo il link</li>
+                            <li>Selezione di 3 tipi di download: <ul>
+                                    <li>High Quality - 720p</li>
+                                    <li>Low Quality - 360p</li>
+                                    <li>Audio Only</li>
+                                </ul>
+                            </li>
+                            <li>Possibilità di rimuovere un link inserito</li>
+                            <li>Possibilità di cambiare il nome del file scaricato</li>
+                            <li>Visualizzare la percentuale scaricata per ogni video</li>
+                            <li>Messaggio di errore in caso di inserimento di url errato</li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
         </div>
     </div>
 
