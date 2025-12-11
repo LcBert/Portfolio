@@ -1,58 +1,39 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luca Bertaggia - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <title>Luca Bertaggia - Portfolio (WIP)</title>
 </head>
 
 <body>
 
-    <div class="sidebar">
-        <img class="profile_image" src="img/foto.png" alt="Foto Profilo" />
-
-        <div class="contact-info">
-            <h1>CONTATTI</h1>
-            <hr>
-            <p>Email: <a href="mailto:luca.bertaggia82@gmail.com">luca.bertaggia82@gmail.com</a></p>
-            <p>Telefono: 349 516 1307</p>
-            <p class="contact-github">GitHub: <a href="https://github.com/LcBert" target="_blank">github.com/LcBert</a>
-            </p>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <h1 class="name">Luca Bertaggia</h1>
-        <p class="presentation">
-            Mi chiamo Luca Bertaggia, sono uno studente universitario in Informatica con una forte passione per la
-            programmazione. Ho frequentato gli studi presso l'ITIS al
-            <a href="https://polotecnicoadria.edu.it/" target="_blank">Polo Tecnico di Adria</a>
-            e attualmente sono iscritto al corso di laurea in Informatica presso
-            <a href="https://www.unife.it/it" target="_blank">l'Università di Ferrara</a>.
+    <header>
+        <img src="images/profile.png" alt="Luca Bertaggia" class="profile-img">
+        <h1>Luca Bertaggia</h1>
+        <p>Welcome to my personal portfolio.</p>
+        <p>Software Developer | University Student | Python Enthusiast</p>
+        <hr>
+        <p>
+            My name is Luca Bertaggia, I am a Computer Science student with a strong passion for
+            programming. I studied at the ITIS
+            <a href="https://polotecnicoadria.edu.it/" target="_blank"> Polo Tecnico di Adria</a>
+            and I am currently enrolled in the Computer Science degree program at
+            <a href="https://www.unife.it/it" target="_blank">the University of Ferrara</a>.
         </p>
 
-        <hr>
+    </header>
 
-        <div class="project-page">
-            <h1 class="section-title">Progetti</h1>
-            <div class="projects">
-                <div id="project-1" class="project-frame">
-                    <p class="title"><a href="projects/project1.html">Project 1</a></p>
-                    <hr>
-                    <p class="description">description</p>
-                </div>
-
-                <div id="project-2" class="project-frame">
-                    <p class="title">Project 2</p>
-                    <hr>
-                    <p class="description">description</p>
-                </div>
-            </div>
+    <section>
+        <h2>My Projects</h2>
+        <div class="projects" id="projects-container">
+            <!-- Projects will be loaded here by JavaScript -->
         </div>
 
-    </div>
+        <script src="script.js"></script>
+    </section>
 
 </body>
 
