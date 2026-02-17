@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Project Alpha",
+        "description": "A revolutionary app that simplifies daily tasks.",
+        "link": "https://github.com/lucabertaggia/project-alpha"
+    },
+    {
+        "name": "Beta Web Service",
+        "description": "High-performance web service built with Node.js.",
+        "link": "https://github.com/lucabertaggia/beta-service"
+    },
+    {
+        "name": "Gamma Design System",
+        "description": "A comprehensive UI kit for modern web applications.",
+        "link": "https://github.com/lucabertaggia/gamma-design"
+    }
+]
