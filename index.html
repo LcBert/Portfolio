@@ -6,37 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luca Bertaggia - Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
 
-    <div class="lang-switch-container">
-        <select id="language-selector">
-            <option value="en">English</option>
-            <option value="it">Italiano</option>
-        </select>
-    </div>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#about" data-en="About" data-it="Chi Sono"></a>
+            <a href="#skills" data-en="Skills" data-it="Competenze"></a>
+            <a href="#projects" data-en="Projects" data-it="Progetti"></a>
+            <a href="#contact" data-en="Contact" data-it="Contatti"></a>
+        </div>
+        <div class="lang-switch-container">
+            <select id="language-selector">
+                <option value="en">English</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+    </nav>
 
-    <header>
-        <!-- Placeholder image. Replace 'profile.jpg' with your actual image file -->
+    <header id="home">
         <img src="img/profile.png" alt="Luca Bertaggia" class="profile-img">
         <h1>Luca Bertaggia</h1>
         <h3 data-en="Software Developer | Tech Enthusiast" data-it="Sviluppatore Software | Appassionato di Tecnologia">
         </h3>
         <p data-en="Computer Science Student at University of Ferrara (Unife)"
             data-it="Studente di Informatica all'Università di Ferrara (Unife)"></p>
+        <a href="#contact" class="cta-button" data-en="Get in Touch" data-it="Contattami"></a>
     </header>
 
     <div class="container">
-        <div id="projects-container" class="projects-grid">
-            <!-- Project cards will be injected here by JavaScript -->
-        </div>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title" data-en="About Me" data-it="Chi Sono"></h2>
+            <div class="about-content">
+                <p data-en="I am a passionate Computer Science student with a strong interest in software development and automation. I love building tools that make life easier and exploring new technologies."
+                    data-it="Sono uno studente di Informatica con una forte passione per lo sviluppo software e l'automazione. Amo creare strumenti che semplificano la vita ed esplorare nuove tecnologie.">
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title" data-en="Skills" data-it="Competenze"></h2>
+            <div id="skills-container" class="skills-grid">
+                <!-- Skills will be injected here by JavaScript -->
+            </div>
+
+            <div class="skills-legend">
+                <span class="legend-item"><span class="skill-dot dot-advanced"></span> <span data-en="Advanced"
+                        data-it="Avanzato"></span></span>
+                <span class="legend-item"><span class="skill-dot dot-intermediate"></span> <span data-en="Intermediate"
+                        data-it="Intermedio"></span></span>
+                <span class="legend-item"><span class="skill-dot dot-beginner"></span> <span data-en="Beginner"
+                        data-it="Principiante"></span></span>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title" data-en="Projects" data-it="Progetti"></h2>
+            <div id="projects-container" class="projects-grid">
+                <!-- Project cards will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title" data-en="Contact Me" data-it="Contattami"></h2>
+            <div class="contact-info">
+                <p data-en="Interested in working together? Send me a message!"
+                    data-it="Interessato a collaborare? Inviami un messaggio!"></p>
+                <a href="mailto:luca.bertaggia82@gmail.com" class="contact-button">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+            </div>
+        </section>
+
     </div>
 
     <footer>
         <div class="social-links">
-            <a href="https://github.com/LcBert" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/luca-bertaggia-037615368/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/LcBert" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/luca-bertaggia-037615368/" target="_blank"><i
+                    class="fab fa-linkedin"></i> LinkedIn</a>
         </div>
         <p>&copy; 2026 Luca Bertaggia</p>
     </footer>

@@ -1,25 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     const projectsContainer = document.getElementById('projects-container');
+    const skillsContainer = document.getElementById('skills-container');
     const languageSelector = document.getElementById('language-selector');
     let projectsData = [];
+    let skillsData = [];
 
-    // Load projects
-    fetch('projects.json')
-        .then(response => response.json())
-        .then(projects => {
+    // Load projects and skills in parallel
+    Promise.all([
+        fetch('projects.json').then(res => res.json()),
+        fetch('skills.json').then(res => res.json())
+    ])
+        .then(([projects, skills]) => {
             projectsData = projects;
+            skillsData = skills;
             // Initial render
             const initialLang = languageSelector.value;
             updateStaticContent(initialLang);
             renderProjects(initialLang);
+            renderSkills(initialLang);
         })
-        .catch(error => console.error('Error loading projects:', error));
+        .catch(error => console.error('Error loading data:', error));
 
     // Handle language change
     languageSelector.addEventListener('change', (e) => {
         const lang = e.target.value;
         updateStaticContent(lang);
         renderProjects(lang);
+        renderSkills(lang);
     });
 
     function updateStaticContent(lang) {
@@ -30,6 +37,43 @@ document.addEventListener('DOMContentLoaded', () => {
             if (text) {
                 element.textContent = text;
             }
+        });
+    }
+
+    function renderSkills(lang) {
+        if (!skillsContainer) return;
+        skillsContainer.innerHTML = '';
+
+        // Helper to map numeric level to strings
+        const getLevelInfo = (level) => {
+            const map = {
+                1: { class: 'advanced', en: 'Advanced', it: 'Avanzato' },
+                2: { class: 'intermediate', en: 'Intermediate', it: 'Intermedio' },
+                3: { class: 'beginner', en: 'Beginner', it: 'Principiante' }
+            };
+            return map[level] || { class: '', en: '', it: '' };
+        };
+
+        skillsData.forEach(skill => {
+            const card = document.createElement('div');
+            card.className = 'skill-card';
+
+            const info = getLevelInfo(skill.level);
+
+            const dot = document.createElement('span');
+            dot.className = `skill-dot dot-${info.class}`;
+            dot.title = info[lang];
+
+            const icon = document.createElement('i');
+            icon.className = skill.icon;
+
+            const name = document.createElement('span');
+            name.textContent = skill.name;
+
+            card.appendChild(dot);
+            card.appendChild(icon);
+            card.appendChild(name);
+            skillsContainer.appendChild(card);
         });
     }
 

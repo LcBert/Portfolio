@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Git",
+        "icon": "fab fa-git-alt",
+        "level": 1
+    },
+    {
+        "name": "Python",
+        "icon": "fab fa-python",
+        "level": 1
+    },
+    {
+        "name": "Java",
+        "icon": "fab fa-java",
+        "level": 1
+    },
+    {
+        "name": "JavaScript",
+        "icon": "fab fa-js",
+        "level": 3
+    },
+    {
+        "name": "HTML/CSS",
+        "icon": "fab fa-html5",
+        "level": 2
+    },
+    {
+        "name": "SQL",
+        "icon": "fas fa-database",
+        "level": 2
+    }
+]
