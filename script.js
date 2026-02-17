@@ -2,8 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsContainer = document.getElementById('projects-container');
     const skillsContainer = document.getElementById('skills-container');
     const languageSelector = document.getElementById('language-selector');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+
     let projectsData = [];
     let skillsData = [];
+
+    // Theme Handling logic
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+    }
 
     // Load projects and skills in parallel
     Promise.all([

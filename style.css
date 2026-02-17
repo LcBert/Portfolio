@@ -1,3 +1,28 @@
+/* CSS Variables for Theming */
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --text-muted: #666;
+    --card-bg: white;
+    --navbar-bg: #34495e;
+    --header-gradient-start: #2c3e50;
+    --header-gradient-end: #3498db;
+    --primary-color: #3498db;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212 !important;
+    --text-color: #e0e0e0 !important;
+    --text-muted: #aaa !important;
+    --card-bg: #1e1e1e !important;
+    --navbar-bg: #1f1f1f !important;
+    --header-gradient-start: #1a1a1a !important;
+    --header-gradient-end: #2c3e50 !important;
+    --primary-color: #5dade2 !important;
+    --shadow-color: rgba(255, 255, 255, 0.05) !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -6,13 +31,29 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle Button */
+.icon-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 5px;
+}
+
+.icon-button:hover {
+    transform: rotate(15deg) scale(1.1);
 }
 
 /* New Navbar Styles */
 .navbar {
-    background-color: #34495e;
+    background-color: var(--navbar-bg);
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -20,6 +61,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.3s;
 }
 
 .nav-links a {
@@ -31,15 +73,16 @@ body {
 }
 
 .nav-links a:hover {
-    color: #3498db;
+    color: var(--primary-color);
 }
 
 header {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    background: linear-gradient(135deg, var(--header-gradient-start) 0%, var(--header-gradient-end) 100%);
     color: white;
     position: relative;
+    transition: background 0.3s;
 }
 
 .lang-switch-container {
@@ -88,13 +131,13 @@ h1 {
 }
 
 .card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 10px;
     padding: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     text-decoration: none;
-    color: inherit;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
 }
@@ -102,32 +145,33 @@ h1 {
 /* Card Hover Animation */
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 20px var(--shadow-color);
 }
 
 .card h2 {
     margin-top: 0;
-    color: #2c3e50;
+    color: var(--text-color);
 }
 
 .card p {
-    color: #666;
+    color: var(--text-muted);
     line-height: 1.6;
     flex-grow: 1;
 }
 
 .card span.link-text {
     margin-top: 20px;
-    color: #3498db;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
 footer {
     text-align: center;
     padding: 40px 20px;
-    background-color: #2c3e50;
+    background-color: var(--navbar-bg);
     color: white;
     margin-top: 60px;
+    transition: background-color 0.3s;
 }
 
 .social-links {
@@ -144,7 +188,7 @@ footer {
 }
 
 .social-links a:hover {
-    color: #3498db;
+    color: var(--primary-color);
 }
 
 /* Section Styles */
@@ -159,8 +203,9 @@ footer {
     text-align: center;
     font-size: 2em;
     margin-bottom: 30px;
-    color: #2c3e50;
+    color: var(--text-color);
     position: relative;
+    transition: color 0.3s;
 }
 
 .section-title::after {
@@ -168,7 +213,7 @@ footer {
     display: block;
     width: 60px;
     height: 4px;
-    background: #3498db;
+    background: var(--primary-color);
     margin: 10px auto;
     border-radius: 2px;
 }
@@ -220,22 +265,23 @@ footer {
 /* Blue */
 
 .skill-card {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 15px 30px;
     border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px var(--shadow-color);
     font-weight: bold;
-    color: #555;
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.3s, color 0.3s;
     position: relative;
-    /* For dot positioning if needed, though flex handles it well */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: transform 0.2s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    background: var(--primary-color);
+    color: white;
 }
 
 .skill-card i {
@@ -249,7 +295,8 @@ footer {
 
 .contact-button {
     display: inline-block;
-    background-color: #2c3e50;
+    background-color: var(--navbar-bg);
+    /* Use navbar-bg for consistency in dark mode */
     color: white;
     padding: 12px 30px;
     border-radius: 5px;
@@ -259,7 +306,7 @@ footer {
 }
 
 .contact-button:hover {
-    background-color: #34495e;
+    background-color: var(--primary-color);
 }
 
 /* CTA Buttons in Header */
