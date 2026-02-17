@@ -262,19 +262,32 @@ footer {
     background-color: #34495e;
 }
 
-/* CTA Button in Header */
+/* CTA Buttons in Header */
+.header-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
 .cta-button {
-    display: inline-block;
-    border: 2px solid white;
-    color: white;
-    padding: 10px 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 30px;
     border-radius: 30px;
     text-decoration: none;
-    margin-top: 20px;
-    transition: all 0.3s;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 160px;
+    background-color: white;
+    color: #2c3e50;
+    border: 2px solid white;
 }
 
 .cta-button:hover {
-    background: white;
-    color: #2c3e50;
+    background-color: transparent;
+    color: white;
 }
