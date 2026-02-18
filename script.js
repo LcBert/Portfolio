@@ -232,18 +232,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentFilter = 'all';
 
+    // Pagination variables
+    let currentProjectPage = 1;
+    const projectsPerPage = 3;
+    const paginationDiv = document.getElementById('projects-pagination');
+    const prevBtn = document.getElementById('projects-prev');
+    const nextBtn = document.getElementById('projects-next');
+    const pageInfo = document.getElementById('projects-page-info');
+
     function renderProjects(lang, filter = 'all') {
         projectsContainer.innerHTML = '';
         let filteredProjects = filter === 'all'
             ? projectsData
             : projectsData.filter(p => p.technologies && p.technologies.includes(filter));
 
-        // Show only first 3 unless showAllProjects is true
-        let displayProjects = showAllProjects ? filteredProjects : filteredProjects.slice(0, 3);
+        // Pagination logic
+        const totalPages = Math.ceil(filteredProjects.length / projectsPerPage) || 1;
+        if (currentProjectPage > totalPages) currentProjectPage = totalPages;
+        const startIdx = (currentProjectPage - 1) * projectsPerPage;
+        const endIdx = startIdx + projectsPerPage;
+        let displayProjects = filteredProjects.slice(startIdx, endIdx);
 
         if (filteredProjects.length === 0) {
             projectsContainer.innerHTML = `<p style="text-align:center; width:100%; color: var(--text-muted);">No projects found for ${filter}.</p>`;
-            if (showAllBtn) showAllBtn.style.display = 'none';
+            if (paginationDiv) paginationDiv.style.display = 'none';
             return;
         }
 
@@ -319,26 +331,30 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(card);
         });
 
-        // Show or hide the Show All/Show Less button
-        if (showAllBtn) {
-            if (filteredProjects.length > 3) {
-                showAllBtn.style.display = '';
-                if (showAllProjects) {
-                    if (showAllText) showAllText.style.display = 'none';
-                    if (showLessText) showLessText.style.display = '';
-                } else {
-                    if (showAllText) showAllText.style.display = '';
-                    if (showLessText) showLessText.style.display = 'none';
-                }
+        // Pagination controls
+        if (paginationDiv) {
+            if (filteredProjects.length > projectsPerPage) {
+                paginationDiv.style.display = '';
+                if (pageInfo) pageInfo.textContent = `Page ${currentProjectPage} of ${totalPages}`;
+                if (prevBtn) prevBtn.disabled = currentProjectPage === 1;
+                if (nextBtn) nextBtn.disabled = currentProjectPage === totalPages;
             } else {
-                showAllBtn.style.display = 'none';
+                paginationDiv.style.display = 'none';
             }
         }
     }
 
-    if (showAllBtn) {
-        showAllBtn.addEventListener('click', () => {
-            showAllProjects = !showAllProjects;
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentProjectPage > 1) {
+                currentProjectPage--;
+                renderProjects(languageSelector.value, document.querySelector('.filter-btn.active').dataset.filter);
+            }
+        });
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentProjectPage++;
             renderProjects(languageSelector.value, document.querySelector('.filter-btn.active').dataset.filter);
         });
     }
