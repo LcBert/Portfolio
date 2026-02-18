@@ -2,31 +2,25 @@
     {
         "type": "education",
         "title": "University of Ferrara",
-        "subtitle": "Computer Science (Informatica)",
-        "period": "2023 - Present",
         "description": {
-            "en": "Focusing on software development, algorithms, and data structures.",
-            "it": "Studiando sviluppo software, algoritmi e strutture dati."
+            "en": "I am currently in my third year at the University of Ferrara (FE).",
+            "it": "Attualmente sto frequentando il 3° anno presso l'università di Ferrara (FE)."
         }
     },
     {
         "type": "education",
         "title": "High School",
-        "subtitle": "Scientific High School",
-        "period": "2018 - 2023",
         "description": {
-            "en": "Specialized in scientific studies and mathematics.",
-            "it": "Specializzazione in studi scientifici e matematica."
+            "en": "Graduated in Computer Science and Telecommunications at the ITIS in Adria (RO).",
+            "it": "Diplomato in Informatica e Telecomunicazioni presso l'ITIS di Adria (RO)."
         }
     },
     {
-        "type": "experience",
-        "title": "Freelance Developer",
-        "subtitle": "Self-employed",
-        "period": "2022 - Present",
+        "type": "experince",
+        "title": "FINN",
         "description": {
-            "en": "Developing custom Python scripts and automation tools for clients.",
-            "it": "Sviluppo di script Python personalizzati e strumenti di automazione per clienti."
+            "en": "Formation & Innovation course FINN (Leadership, Creative Selling, HR Management).",
+            "it": "Corso di Formazione & Innovazione FINN (Leadership, Vendita Creativa, Gestione HR)."
         }
     }
 ]
