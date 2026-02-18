@@ -240,11 +240,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('projects-next');
     const pageInfo = document.getElementById('projects-page-info');
 
+    const projectSearchInput = document.getElementById('project-search');
+    let projectSearchTerm = '';
+
+    if (projectSearchInput) {
+        projectSearchInput.addEventListener('input', (e) => {
+            projectSearchTerm = e.target.value.trim().toLowerCase();
+            currentProjectPage = 1;
+            renderProjects(languageSelector.value, document.querySelector('.filter-btn.active').dataset.filter);
+        });
+    }
+
     function renderProjects(lang, filter = 'all') {
         projectsContainer.innerHTML = '';
         let filteredProjects = filter === 'all'
             ? projectsData
             : projectsData.filter(p => p.technologies && p.technologies.includes(filter));
+
+        // Apply search filter
+        if (projectSearchTerm) {
+            filteredProjects = filteredProjects.filter(p =>
+                (p.name && p.name.toLowerCase().includes(projectSearchTerm))
+            );
+        }
 
         // Pagination logic
         const totalPages = Math.ceil(filteredProjects.length / projectsPerPage) || 1;
