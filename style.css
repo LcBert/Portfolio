@@ -97,6 +97,24 @@ header {
     color: white;
     position: relative;
     transition: background 0.3s;
+    overflow: hidden;
+    /* Ensure particles don't spill out */
+}
+
+/* Particle Background */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Ensure content stays above particles */
+header>*:not(#particles-js) {
+    position: relative;
+    z-index: 2;
 }
 
 .lang-switch-container {
