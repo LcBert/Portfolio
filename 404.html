@@ -6,17 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Plausible Analytics (privacy-friendly) -->
+    <script defer data-domain="yourdomain.com" src="https://plausible.io/js/plausible.js"></script>
 </head>
 
 <body class="page-404">
-    <div class="error-container">
-        <span class="emoji">🧭</span>
-        <div class="error-code">404</div>
-        <div class="error-message">Page Not Found</div>
-        <div class="error-desc">Oops! Looks like you took a wrong turn.<br>But hey, even the best explorers get lost
-            sometimes.</div>
-        <a href="index.html" class="back-btn">Take me home</a>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html#about" data-en="About" data-it="Chi Sono">About</a>
+            <a href="index.html#skills" data-en="Skills" data-it="Competenze">Skills</a>
+            <a href="index.html#timeline" data-en="Timeline" data-it="Percorso">Timeline</a>
+            <a href="index.html#projects" data-en="Projects" data-it="Progetti">Projects</a>
+            <a href="index.html#contact" data-en="Contact" data-it="Contatti">Contact</a>
+        </div>
+        <div class="lang-switch-container" style="display: flex; gap: 10px; align-items: center;">
+            <a href="index.html" class="icon-button" aria-label="Back to Home">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="container" style="min-height:60vh;display:flex;align-items:center;justify-content:center;">
+        <div class="error-container" style="margin:auto;max-width:480px;width:100%;">
+            <span class="emoji">🧭</span>
+            <div class="error-code">404</div>
+            <div class="error-message">Page Not Found</div>
+            <div class="error-desc">Oops! Looks like you took a wrong turn.<br>But hey, even the best explorers get lost
+                sometimes.</div>
+            <a href="index.html" class="back-btn">Take me home</a>
+        </div>
     </div>
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/LcBert" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/luca-bertaggia-037615368/" target="_blank"><i
+                    class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <p>&copy; 2026 Luca Bertaggia</p>
+    </footer>
 </body>
 
 </html>
