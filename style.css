@@ -288,25 +288,88 @@ footer {
     font-size: 1.2em;
 }
 
-/* Contact Section */
-.contact-info {
-    text-align: center;
-}
-
-.contact-button {
-    display: inline-block;
-    background-color: var(--navbar-bg);
-    /* Use navbar-bg for consistency in dark mode */
-    color: white;
-    padding: 12px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 20px;
+/* Contact Section Styles */
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
     transition: background-color 0.3s;
 }
 
-.contact-button:hover {
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: var(--bg-color);
+    /* Matches theme background */
+    color: var(--text-color);
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.contact-button {
     background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    width: 100%;
+    /* Full width button */
+}
+
+.contact-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.form-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+    min-height: 24px;
+}
+
+.success-message {
+    color: #2ecc71;
+}
+
+.error-message {
+    color: #e74c3c;
 }
 
 /* CTA Buttons in Header */

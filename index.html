@@ -87,12 +87,24 @@
         <!-- Contact Section -->
         <section id="contact" class="section">
             <h2 class="section-title" data-en="Contact Me" data-it="Contattami"></h2>
-            <div class="contact-info">
-                <p data-en="Interested in working together? Send me a message!"
-                    data-it="Interessato a collaborare? Inviami un messaggio!"></p>
-                <a href="mailto:luca.bertaggia82@gmail.com" class="contact-button">
-                    <i class="fas fa-envelope"></i> Email Me
-                </a>
+            <div class="contact-container">
+                <form id="contact-form" action="https://formspree.io/f/mwvnqenv" method="POST">
+                    <div class="form-group">
+                        <label for="name" data-en="Name" data-it="Nome">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-en="Email" data-it="Email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-en="Message" data-it="Messaggio">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-button w-100" data-en="Send Message"
+                        data-it="Invia Messaggio">Send Message</button>
+                    <p id="form-status" class="form-status"></p>
+                </form>
             </div>
         </section>
 

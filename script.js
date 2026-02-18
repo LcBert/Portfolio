@@ -133,4 +133,41 @@ document.addEventListener('DOMContentLoaded', () => {
             projectsContainer.appendChild(card);
         });
     }
+
+    // Contact Form Handling
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            const status = document.getElementById('form-status');
+            const lang = languageSelector.value;
+
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.textContent = lang === 'it' ? 'Grazie! Il tuo messaggio è stato inviato.' : 'Thanks! Your message has been sent.';
+                    status.className = 'form-status success-message';
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.textContent = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.textContent = lang === 'it' ? 'Oops! C\'è stato un problema.' : 'Oops! There was a problem submitting your form.';
+                        }
+                        status.className = 'form-status error-message';
+                    });
+                }
+            }).catch(error => {
+                status.textContent = lang === 'it' ? 'Oops! C\'è stato un problema.' : 'Oops! There was a problem submitting your form.';
+                status.className = 'form-status error-message';
+            });
+        });
+    }
 });
