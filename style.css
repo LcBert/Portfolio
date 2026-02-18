@@ -1,5 +1,19 @@
 /* CSS Variables for Theming */
 :root {
+    /* Default Dark Theme */
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --text-muted: #aaa;
+    --card-bg: #1e1e1e;
+    --navbar-bg: #1f1f1f;
+    --header-gradient-start: #1a1a1a;
+    --header-gradient-end: #2c3e50;
+    --primary-color: #5dade2;
+    --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] {
+    /* Light Theme Override */
     --bg-color: #f4f4f9;
     --text-color: #333;
     --text-muted: #666;
@@ -9,18 +23,6 @@
     --header-gradient-end: #3498db;
     --primary-color: #3498db;
     --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] {
-    --bg-color: #121212 !important;
-    --text-color: #e0e0e0 !important;
-    --text-muted: #aaa !important;
-    --card-bg: #1e1e1e !important;
-    --navbar-bg: #1f1f1f !important;
-    --header-gradient-start: #1a1a1a !important;
-    --header-gradient-end: #2c3e50 !important;
-    --primary-color: #5dade2 !important;
-    --shadow-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 html {

@@ -9,12 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let skillsData = [];
 
     // Theme Handling logic
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Default to 'dark' if no theme is saved
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
+        // Toggle: if current is 'light' (explicitly set), go to 'dark', otherwise default behavior
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
         document.documentElement.setAttribute('data-theme', newTheme);
@@ -23,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateThemeIcon(theme) {
+        // If theme is dark, show sun icon (to switch to light). 
+        // If theme is light, show moon icon (to switch to dark).
         if (theme === 'dark') {
             themeIcon.className = 'fas fa-sun';
         } else {
