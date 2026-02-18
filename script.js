@@ -77,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Initial render
             const initialLang = languageSelector.value;
             updateStaticContent(initialLang);
+
+            // Setup filters first
+            setupProjectFilters();
+
             renderProjects(initialLang);
             renderSkills(initialLang);
             renderTimeline(initialLang);
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     languageSelector.addEventListener('change', (e) => {
         const lang = e.target.value;
         updateStaticContent(lang);
-        renderProjects(lang);
+        renderProjects(lang, document.querySelector('.filter-btn.active').dataset.filter);
         renderSkills(lang);
         renderTimeline(lang);
     });
@@ -186,13 +190,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function renderProjects(lang) {
+    let currentFilter = 'all';
+
+    function renderProjects(lang, filter = 'all') {
         projectsContainer.innerHTML = ''; // Clear existing content
 
-        projectsData.forEach(project => {
+        // Filter projects
+        const filteredProjects = filter === 'all'
+            ? projectsData
+            : projectsData.filter(p => p.technologies && p.technologies.includes(filter));
+
+        if (filteredProjects.length === 0) {
+            projectsContainer.innerHTML = `<p style="text-align:center; width:100%; color: var(--text-muted);">No projects found for ${filter}.</p>`;
+            return;
+        }
+
+        filteredProjects.forEach(project => {
             const card = document.createElement('a');
             card.href = project.link;
-            card.className = 'card';
+            card.className = 'card reveal'; // Added reveal class directly
             card.target = '_blank'; // Open link in new tab
 
             const title = document.createElement('h2');
@@ -230,7 +246,44 @@ document.addEventListener('DOMContentLoaded', () => {
             projectsContainer.appendChild(card);
 
             // Add to observer
-            observeElements([card]);
+            observer.observe(card);
+        });
+    }
+
+    function setupProjectFilters() {
+        // Collect all unique technologies
+        const allTechnologies = new Set();
+        projectsData.forEach(p => {
+            if (p.technologies) {
+                p.technologies.forEach(t => allTechnologies.add(t));
+            }
+        });
+
+        const filtersContainer = document.getElementById('project-filters');
+        // Clear existing dynamic filters (keep 'All')
+        const allBtn = filtersContainer.querySelector('[data-filter="all"]');
+        filtersContainer.innerHTML = '';
+        filtersContainer.appendChild(allBtn);
+
+        allTechnologies.forEach(tech => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = tech;
+            btn.dataset.filter = tech;
+            filtersContainer.appendChild(btn);
+        });
+
+        // Add event listeners (using delegation or direct attach)
+        filtersContainer.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Remove active class from all
+                filtersContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active to clicked target
+                e.target.classList.add('active');
+
+                const filter = e.target.dataset.filter;
+                renderProjects(languageSelector.value, filter);
+            });
         });
     }
 
