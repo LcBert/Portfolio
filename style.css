@@ -180,6 +180,25 @@ body {
     transform: rotate(15deg) scale(1.1);
 }
 
+/* Scroll Progress Bar */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 1001;
+    /* Ensure it's above the navbar */
+    background: transparent;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    width: 0%;
+    transition: width 0.1s ease-out;
+}
+
 /* New Navbar Styles */
 .navbar {
     background-color: var(--navbar-bg);

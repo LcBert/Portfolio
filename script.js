@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsContainer = document.getElementById('projects-container');
     const skillsContainer = document.getElementById('skills-container');
     const timelineContainer = document.getElementById('timeline-container');
+    const scrollProgress = document.getElementById('scroll-progress');
     const languageSelector = document.getElementById('language-selector');
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateActiveLink() {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             // logic: if scroll reaches section top minus some offset (e.g. 150px for header + buffer)
@@ -66,10 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if(sections.length > 0) {
+    if (sections.length > 0) {
         window.addEventListener('scroll', updateActiveLink);
     }
-
+    // Scroll Progress Bar Logic
+    window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+        if (scrollProgress) {
+            scrollProgress.style.width = scrolled + "%";
+        }
+    });
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         // Toggle: if current is 'light' (explicitly set), go to 'dark', otherwise default behavior
