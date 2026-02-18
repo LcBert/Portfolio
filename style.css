@@ -438,6 +438,35 @@ footer {
     color: #e74c3c;
 }
 
+/* Typing Animation */
+.typed-text {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.cursor {
+    display: inline-block;
+    background-color: var(--text-color);
+    width: 3px;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 /* CTA Buttons in Header */
 .header-buttons {
     margin-top: 30px;

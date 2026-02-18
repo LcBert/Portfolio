@@ -341,4 +341,54 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    // Typing Animation Logic
+    const typedTextSpan = document.getElementById('typed-text');
+
+    // Phrases for typing animation
+    const typingPhrases = {
+        en: ["Software Developer", "Tech Enthusiast", "CS Student"],
+        it: ["Sviluppatore Software", "Appassionato di Tech", "Studente di Informatica"]
+    };
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+    let typingTimeout;
+
+    function type() {
+        const lang = languageSelector.value;
+        const currentPhrases = typingPhrases[lang] || typingPhrases['en'];
+
+        // Safety check for index
+        if (phraseIndex >= currentPhrases.length) phraseIndex = 0;
+
+        const currentPhrase = currentPhrases[phraseIndex];
+
+        if (isDeleting) {
+            typedTextSpan.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50; // Faster when deleting
+        } else {
+            typedTextSpan.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100; // Normal typing speed
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Pause at full phrase
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % currentPhrases.length;
+            typeSpeed = 500; // Pause before starting new phrase
+        }
+
+        typingTimeout = setTimeout(type, typeSpeed);
+    }
+
+    if (typedTextSpan) {
+        type();
+    }
 });
