@@ -10,6 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let skillsData = [];
     let timelineData = [];
 
+    // Scroll Reveal Animation Logic
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
+        });
+    }, observerOptions);
+
+    // Helper to add 'reveal' class and observe elements
+    const observeElements = (elements) => {
+        elements.forEach((el) => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+    };
+
+    // Observe static elements initially
+    const staticElements = document.querySelectorAll('.section-title, .about-content, .contact-container');
+    observeElements(staticElements);
+
     // Theme Handling logic
     // Default to 'dark' if no theme is saved
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -110,6 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(icon);
             card.appendChild(name);
             skillsContainer.appendChild(card);
+            // Add to observer
+            observeElements([card]);
         });
     }
 
@@ -151,6 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             timelineItem.appendChild(content);
             timelineContainer.appendChild(timelineItem);
+
+            // Add content box to observer for animation
+            observeElements([content]);
         });
     }
 
@@ -183,6 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(linkText);
 
             projectsContainer.appendChild(card);
+
+            // Add to observer
+            observeElements([card]);
         });
     }
 
