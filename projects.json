@@ -5,7 +5,10 @@
             "en": "A python library to manage files to write, read, delete, rename and move files and directories with simple commands.",
             "it": "Una libreria Python per gestire file: scrivere, leggere, eliminare, rinominare e spostare file e directory con comandi semplici."
         },
-        "link": "https://github.com/LcBert/File-Manager"
+        "link": "https://github.com/LcBert/File-Manager",
+        "technologies": [
+            "Python"
+        ]
     },
     {
         "name": "Text Editor",
@@ -13,7 +16,11 @@
             "en": "A simple python text editor with GUI using PyQt5 and designer, allowing users to create, open, edit, and save text files.",
             "it": "Un semplice editor di testo in Python con GUI creata usando PyQt5 e designer, che permette agli utenti di creare, aprire, modificare e salvare file di testo."
         },
-        "link": "https://github.com/LcBert/Text-Editor"
+        "link": "https://github.com/LcBert/Text-Editor",
+        "technologies": [
+            "Python",
+            "PyQt5"
+        ]
     },
     {
         "name": "Whatsapp Memory Cleaner",
@@ -21,6 +28,9 @@
             "en": "A tool to help users clean up unnecessary media files from their WhatsApp storage, improving devices memory",
             "it": "Uno strumento per aiutare gli utenti a pulire i file multimediali non necessari dallo spazio di archiviazione di WhatsApp, liberando memoria sul dispositivo."
         },
-        "link": "https://github.com/LcBert/WhatsApp-Memory-Cleaner"
+        "link": "https://github.com/LcBert/WhatsApp-Memory-Cleaner",
+        "technologies": [
+            "Android Studio"
+        ]
     }
 ]

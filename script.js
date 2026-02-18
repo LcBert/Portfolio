@@ -198,6 +198,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = document.createElement('h2');
             title.textContent = project.name;
 
+            // Render Tech Stack
+            const techContainer = document.createElement('div');
+            techContainer.className = 'project-tech';
+            if (project.technologies) {
+                project.technologies.forEach(tech => {
+                    const badge = document.createElement('span');
+                    badge.className = 'tech-badge';
+                    badge.textContent = tech;
+                    techContainer.appendChild(badge);
+                });
+            }
+
             const description = document.createElement('p');
             // Support both old string format (if any) and new object format
             if (typeof project.description === 'object') {
@@ -211,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             linkText.textContent = lang === 'it' ? 'Vedi Progetto →' : 'View Project →';
 
             card.appendChild(title);
+            card.appendChild(techContainer);
             card.appendChild(description);
             card.appendChild(linkText);
 
