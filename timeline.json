@@ -1,0 +1,32 @@
+[
+    {
+        "type": "education",
+        "title": "University of Ferrara",
+        "subtitle": "Computer Science (Informatica)",
+        "period": "2023 - Present",
+        "description": {
+            "en": "Focusing on software development, algorithms, and data structures.",
+            "it": "Studiando sviluppo software, algoritmi e strutture dati."
+        }
+    },
+    {
+        "type": "education",
+        "title": "High School",
+        "subtitle": "Scientific High School",
+        "period": "2018 - 2023",
+        "description": {
+            "en": "Specialized in scientific studies and mathematics.",
+            "it": "Specializzazione in studi scientifici e matematica."
+        }
+    },
+    {
+        "type": "experience",
+        "title": "Freelance Developer",
+        "subtitle": "Self-employed",
+        "period": "2022 - Present",
+        "description": {
+            "en": "Developing custom Python scripts and automation tools for clients.",
+            "it": "Sviluppo di script Python personalizzati e strumenti di automazione per clienti."
+        }
+    }
+]

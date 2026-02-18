@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const projectsContainer = document.getElementById('projects-container');
     const skillsContainer = document.getElementById('skills-container');
+    const timelineContainer = document.getElementById('timeline-container');
     const languageSelector = document.getElementById('language-selector');
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
 
     let projectsData = [];
     let skillsData = [];
+    let timelineData = [];
 
     // Theme Handling logic
     // Default to 'dark' if no theme is saved
@@ -34,19 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Load projects and skills in parallel
+    // Load projects, skills, and timeline in parallel
     Promise.all([
         fetch('projects.json').then(res => res.json()),
-        fetch('skills.json').then(res => res.json())
+        fetch('skills.json').then(res => res.json()),
+        fetch('timeline.json').then(res => res.json())
     ])
-        .then(([projects, skills]) => {
+        .then(([projects, skills, timeline]) => {
             projectsData = projects;
             skillsData = skills;
+            timelineData = timeline;
+
             // Initial render
             const initialLang = languageSelector.value;
             updateStaticContent(initialLang);
             renderProjects(initialLang);
             renderSkills(initialLang);
+            renderTimeline(initialLang);
         })
         .catch(error => console.error('Error loading data:', error));
 
@@ -56,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStaticContent(lang);
         renderProjects(lang);
         renderSkills(lang);
+        renderTimeline(lang);
     });
 
     function updateStaticContent(lang) {
@@ -103,6 +110,47 @@ document.addEventListener('DOMContentLoaded', () => {
             card.appendChild(icon);
             card.appendChild(name);
             skillsContainer.appendChild(card);
+        });
+    }
+
+    function renderTimeline(lang) {
+        if (!timelineContainer) return;
+        timelineContainer.innerHTML = '';
+
+        timelineData.forEach((item, index) => {
+            const timelineItem = document.createElement('div');
+            // Alternate left/right
+            const position = index % 2 === 0 ? 'left' : 'right';
+            timelineItem.className = `timeline-item ${position}`;
+
+            const content = document.createElement('div');
+            content.className = 'timeline-content';
+
+            const date = document.createElement('span');
+            date.className = 'timeline-date';
+            date.textContent = item.period;
+
+            const title = document.createElement('h3');
+            title.textContent = item.title;
+
+            const subtitle = document.createElement('h4');
+            subtitle.textContent = item.subtitle;
+
+            const description = document.createElement('p');
+            // Handle description as string or object (simpler than project handling for now)
+            if (typeof item.description === 'object') {
+                description.textContent = item.description[lang] || item.description['en'];
+            } else {
+                description.textContent = item.description;
+            }
+
+            content.appendChild(date);
+            content.appendChild(title);
+            content.appendChild(subtitle);
+            content.appendChild(description);
+
+            timelineItem.appendChild(content);
+            timelineContainer.appendChild(timelineItem);
         });
     }
 

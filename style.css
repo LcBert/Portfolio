@@ -403,3 +403,129 @@ footer {
     background-color: transparent;
     color: white;
 }
+
+/* Timeline Styles */
+.timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* The vertical line */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+}
+
+/* Timeline card container */
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: transparent;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* Place items on left and right */
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+/* The circle on the timeline */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--card-bg);
+    border: 4px solid var(--primary-color);
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Fix circle position for right items */
+.timeline-item.right::after {
+    left: -10px;
+}
+
+/* Actual content box */
+.timeline-content {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    color: var(--text-color);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+}
+
+.timeline-date {
+    font-size: 0.9em;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.timeline-content h3 {
+    margin: 0 0 5px 0;
+    color: var(--text-color);
+}
+
+.timeline-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.timeline-content p {
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Responsive Timeline for Mobile */
+@media screen and (max-width: 768px) {
+    .timeline-container::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        text-align: left;
+    }
+
+    .timeline-item.left::after,
+    .timeline-item.right::after {
+        left: 21px;
+    }
+}
