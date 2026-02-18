@@ -420,29 +420,41 @@ footer {
 /* Project Filters */
 .project-filters {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
     flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 18px;
 }
 
 .filter-btn {
-    background-color: transparent;
-    border: 2px solid var(--primary-color);
+    background: var(--card-bg);
     color: var(--text-color);
-    padding: 8px 20px;
-    border-radius: 20px;
+    border: 1.5px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 7px 18px;
+    font-size: 1em;
+    font-weight: 500;
     cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-    font-family: inherit;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    outline: none;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.filter-btn[data-filter="all"] {
+    font-weight: 600;
+    border-style: dashed;
+}
+
+.filter-btn[data-filter="all"].active {
+    background: var(--primary-color);
+    color: #fff;
+    border-style: solid;
 }
 
 /* Skills Grid */
@@ -919,4 +931,43 @@ footer {
 #project-search:not(:placeholder-shown)+#clear-project-search,
 #project-search:focus+#clear-project-search {
     display: block;
+}
+
+/* Project Filter Multi-Select Styles */
+#project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+#project-filters .filter-btn {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1.5px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 7px 18px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    outline: none;
+}
+
+#project-filters .filter-btn.active {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+#project-filters .filter-btn[data-filter="all"] {
+    font-weight: 600;
+    border-style: dashed;
+}
+
+#project-filters .filter-btn[data-filter="all"].active {
+    background: var(--primary-color);
+    color: #fff;
+    border-style: solid;
 }

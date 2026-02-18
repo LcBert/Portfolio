@@ -269,11 +269,73 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleClearBtn();
     }
 
-    function renderProjects(lang, filter = 'all') {
+    let activeFilters = new Set(['all']);
+
+    function setupProjectFilters() {
+        // Collect all unique technologies
+        const allTechnologies = new Set();
+        projectsData.forEach(p => {
+            if (p.technologies) {
+                p.technologies.forEach(t => allTechnologies.add(t));
+            }
+        });
+
+        const filtersContainer = document.getElementById('project-filters');
+        // Clear existing dynamic filters (keep 'All')
+        const allBtn = filtersContainer.querySelector('[data-filter="all"]');
+        filtersContainer.innerHTML = '';
+        filtersContainer.appendChild(allBtn);
+
+        allTechnologies.forEach(tech => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = tech;
+            btn.dataset.filter = tech;
+            filtersContainer.appendChild(btn);
+        });
+
+        // Multi-select filter logic
+        filtersContainer.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const filter = e.target.dataset.filter;
+                if (filter === 'all') {
+                    activeFilters = new Set(['all']);
+                    filtersContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                } else {
+                    if (activeFilters.has('all')) activeFilters.delete('all');
+                    if (activeFilters.has(filter)) {
+                        activeFilters.delete(filter);
+                        e.target.classList.remove('active');
+                    } else {
+                        activeFilters.add(filter);
+                        e.target.classList.add('active');
+                    }
+                    // If none selected, default to 'all'
+                    if (activeFilters.size === 0) {
+                        activeFilters.add('all');
+                        filtersContainer.querySelector('[data-filter="all"]').classList.add('active');
+                    } else {
+                        filtersContainer.querySelector('[data-filter="all"]').classList.remove('active');
+                    }
+                }
+                renderProjects(languageSelector.value, Array.from(activeFilters));
+            });
+        });
+    }
+
+    function renderProjects(lang, filters = ['all']) {
         projectsContainer.innerHTML = '';
-        let filteredProjects = filter === 'all'
-            ? projectsData
-            : projectsData.filter(p => p.technologies && p.technologies.includes(filter));
+        let filteredProjects = [];
+        if (Array.isArray(filters) && filters.includes('all')) {
+            filteredProjects = projectsData;
+        } else if (Array.isArray(filters) && filters.length > 0) {
+            filteredProjects = projectsData.filter(p =>
+                p.technologies && filters.every(f => p.technologies.includes(f))
+            );
+        } else {
+            filteredProjects = projectsData;
+        }
 
         // Apply search filter
         if (projectSearchTerm) {
@@ -507,43 +569,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             modal.style.display = "none";
         }, 300); // Wait for transition
-    }
-
-    function setupProjectFilters() {
-        // Collect all unique technologies
-        const allTechnologies = new Set();
-        projectsData.forEach(p => {
-            if (p.technologies) {
-                p.technologies.forEach(t => allTechnologies.add(t));
-            }
-        });
-
-        const filtersContainer = document.getElementById('project-filters');
-        // Clear existing dynamic filters (keep 'All')
-        const allBtn = filtersContainer.querySelector('[data-filter="all"]');
-        filtersContainer.innerHTML = '';
-        filtersContainer.appendChild(allBtn);
-
-        allTechnologies.forEach(tech => {
-            const btn = document.createElement('button');
-            btn.className = 'filter-btn';
-            btn.textContent = tech;
-            btn.dataset.filter = tech;
-            filtersContainer.appendChild(btn);
-        });
-
-        // Add event listeners (using delegation or direct attach)
-        filtersContainer.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Remove active class from all
-                filtersContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                // Add active to clicked target
-                e.target.classList.add('active');
-
-                const filter = e.target.dataset.filter;
-                renderProjects(languageSelector.value, filter);
-            });
-        });
     }
 
     // Contact Form Handling
