@@ -344,7 +344,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.classList.add('active');
                 card.classList.remove('reveal');
             }
-            card.addEventListener('click', () => openProjectModal(project));
+            card.addEventListener('click', (e) => {
+                // Prevent modal if like button is clicked
+                if (e.target.closest('.like-btn')) return;
+                openProjectModal(project);
+            });
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -374,12 +378,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const description = document.createElement('p');
             description.textContent = getLocalizedText(project.description, lang);
+            // Like section
+            const likeSection = document.createElement('div');
+            likeSection.className = 'like-section';
+            const likeBtn = document.createElement('button');
+            likeBtn.className = 'like-btn';
+            likeBtn.type = 'button';
+            likeBtn.setAttribute('aria-label', lang === 'it' ? 'Metti Mi Piace' : 'Like this project');
+            likeBtn.innerHTML = '<span aria-hidden="true">&#x2764;</span>';
+            const likeCount = document.createElement('span');
+            likeCount.className = 'like-count';
+            likeCount.textContent = '0';
+            likeSection.appendChild(likeBtn);
+            likeSection.appendChild(likeCount);
             const linkText = document.createElement('span');
             linkText.className = 'link-text';
             linkText.textContent = lang === 'it' ? 'Vedi Dettagli →' : 'View Details →';
             card.appendChild(title);
             card.appendChild(techContainer);
             card.appendChild(description);
+            card.appendChild(likeSection);
             card.appendChild(linkText);
             projectsContainer.appendChild(card);
             observer.observe(card);
@@ -742,7 +760,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ...existing code...
+    // --- Like Button Logic ---
+    const LIKE_API = 'http://localhost:3030';
+
+    function updateLikeCounts(likes) {
+        document.querySelectorAll('.card').forEach(card => {
+            const likeBtn = card.querySelector('.like-btn');
+            const likeCount = card.querySelector('.like-count');
+            if (!likeBtn || !likeCount) return;
+            const projectName = card.querySelector('h2')?.textContent?.trim();
+            likeCount.textContent = likes[projectName] || 0;
+            // Optionally, visually mark if user already liked (localStorage)
+            if (localStorage.getItem('liked_' + projectName)) {
+                likeBtn.classList.add('liked');
+            } else {
+                likeBtn.classList.remove('liked');
+            }
+        });
+    }
+
+    function fetchLikesAndUpdate() {
+        fetch(LIKE_API + '/likes')
+            .then(res => res.json())
+            .then(updateLikeCounts);
+    }
+
+    document.addEventListener('click', function (e) {
+        if (e.target.closest('.like-btn')) {
+            const btn = e.target.closest('.like-btn');
+            const card = btn.closest('.card');
+            const projectName = card.querySelector('h2')?.textContent?.trim();
+            if (!projectName) return;
+            if (localStorage.getItem('liked_' + projectName)) return; // Prevent multiple likes per user
+            fetch(LIKE_API + '/like/' + encodeURIComponent(projectName), { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem('liked_' + projectName, '1');
+                    fetchLikesAndUpdate();
+                });
+        }
+    });
+
+    // Call after projects are rendered
+    setTimeout(fetchLikesAndUpdate, 500);
+    // --- End Like Button Logic ---
 });
 
 function getLocalizedText(val, lang) {

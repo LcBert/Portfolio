@@ -971,3 +971,35 @@ footer {
     color: #fff;
     border-style: solid;
 }
+
+/* Like Button and Count */
+.like-section {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color, #27ae60);
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+
+.like-btn.liked {
+    color: #e74c3c;
+}
+
+.like-btn:focus {
+    outline: 2px solid var(--primary-color, #27ae60);
+}
+
+.like-count {
+    font-weight: 600;
+    margin-left: 2px;
+}
