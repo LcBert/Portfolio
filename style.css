@@ -7,8 +7,8 @@
     --card-bg: #1e1e1e;
     --navbar-bg: #1f1f1f;
     --header-gradient-start: #1a1a1a;
-    --header-gradient-end: #2c3e50;
-    --primary-color: #5dade2;
+    --header-gradient-end: #1e392a;
+    --primary-color: #2ecc71;
     --shadow-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -18,10 +18,10 @@
     --text-color: #333;
     --text-muted: #666;
     --card-bg: white;
-    --navbar-bg: #34495e;
+    --navbar-bg: #2c3e50;
     --header-gradient-start: #2c3e50;
-    --header-gradient-end: #3498db;
-    --primary-color: #3498db;
+    --header-gradient-end: #27ae60;
+    --primary-color: #27ae60;
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
