@@ -478,19 +478,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (project.caseStudy && typeof project.caseStudy === 'object') {
             const cs = project.caseStudy;
-            let html = `<h3 style="margin-bottom:12px; color:var(--primary);">${lang === 'it' ? 'Case Study Approfondito' : 'Deep-Dive Case Study'}</h3>`;
+            let html = "";
             for (const key of Object.keys(cs)) {
                 // Try to localize the key label if possible
                 let label = key;
-                if (lang === 'it') {
-                    if (key.toLowerCase() === 'situation') label = 'Situazione';
-                    else if (key.toLowerCase() === 'task') label = 'Compito';
-                    else if (key.toLowerCase() === 'action') label = 'Azione';
-                    else if (key.toLowerCase() === 'result') label = 'Risultato';
-                } else {
-                    // Capitalize first letter for English
-                    label = key.charAt(0).toUpperCase() + key.slice(1);
-                }
+                label = key.charAt(0).toUpperCase() + key.slice(1);
                 const value = cs[key]?.[lang] || cs[key]?.en || cs[key];
                 html += `<div style="margin-bottom:14px;"><strong>${label}:</strong><br>${value}</div>`;
             }

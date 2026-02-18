@@ -1,5 +1,36 @@
 [
     {
+        "name": "Chat Room",
+        "description": {
+            "en": "A multi-threaded client-server messaging application built with Python. It allows multiple users to connect simultaneously, authenticate via login/register, and exchange real-time messages.",
+            "it": "Un'applicazione di messaggistica client-server multi-thread costruita con Python. Permette a più utenti di connettersi simultaneamente, autenticarsi tramite login/registrazione e scambiare messaggi in tempo reale."
+        },
+        "link": "https://github.com/LcBert/ChatRoom",
+        "technologies": [
+            "Python",
+            "Socket Programming",
+            "Threading"
+        ],
+        "caseStudy": {
+            "situation": {
+                "en": "Needed a lightweight, private communication channel to understand the fundamentals of network programming and concurrent data handling.",
+                "it": "Era necessario un canale di comunicazione leggero e privato per comprendere i fondamenti della programmazione di rete e della gestione simultanea dei dati."
+            },
+            "task": {
+                "en": "Develop a system capable of handling multiple distinct client connections at once while securely managing user identities through a Login/Register system.",
+                "it": "Sviluppare un sistema in grado di gestire più connessioni client distinte contemporaneamente gestendo in modo sicuro le identità degli utenti tramite un sistema di Login/Registrazione."
+            },
+            "action": {
+                "en": "Implemented a Server architecture using Python `sockets` and `threading` to listen for incoming traffic without blocking. Designed a custom protocol for message broadcasting and integrated a user authentication system to manage registered accounts.",
+                "it": "Implementata un'architettura Server utilizzando `sockets` e `threading` di Python per ascoltare il traffico in entrata senza blocchi. Progettato un protocollo personalizzato per la trasmissione dei messaggi e integrato un sistema di autenticazione utente per gestire gli account registrati."
+            },
+            "result": {
+                "en": "Achieved a stable chat environment supporting multiple concurrent users with instant message delivery and persistent user credentials.",
+                "it": "Realizzato un ambiente di chat stabile che supporta più utenti simultanei con consegna istantanea dei messaggi e credenziali utente persistenti."
+            }
+        }
+    },
+    {
         "name": "File Manager Python Library",
         "description": {
             "en": "A python library to manage files to write, read, delete, rename and move files and directories with simple commands.",
