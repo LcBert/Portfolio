@@ -43,6 +43,33 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 
+    // Scroll Spy for Navigation Active State
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function updateActiveLink() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            // logic: if scroll reaches section top minus some offset (e.g. 150px for header + buffer)
+            if (window.scrollY >= (sectionTop - 150)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current) && current !== '') {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    if(sections.length > 0) {
+        window.addEventListener('scroll', updateActiveLink);
+    }
+
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         // Toggle: if current is 'light' (explicitly set), go to 'dark', otherwise default behavior

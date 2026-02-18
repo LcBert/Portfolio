@@ -205,6 +205,11 @@ body {
     color: var(--primary-color);
 }
 
+.nav-links a.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
 header {
     text-align: center;
     padding: 80px 20px;
