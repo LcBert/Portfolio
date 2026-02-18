@@ -43,7 +43,7 @@
     {
         "name": "Whatsapp Memory Cleaner",
         "description": {
-            "en": "A tool to help users clean up unnecessary media files from their WhatsApp storage, improving devices memory",
+            "en": "A tool to help users clean up unnecessary media files from their WhatsApp storage, improving device memory",
             "it": "Uno strumento per aiutare gli utenti a pulire i file multimediali non necessari dallo spazio di archiviazione di WhatsApp, liberando memoria sul dispositivo."
         },
         "link": "https://github.com/LcBert/WhatsApp-Memory-Cleaner",

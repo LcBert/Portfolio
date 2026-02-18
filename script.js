@@ -187,42 +187,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderTimeline(lang) {
         if (!timelineContainer) return;
         timelineContainer.innerHTML = '';
-
         timelineData.forEach((item, index) => {
             const timelineItem = document.createElement('div');
-            // Alternate left/right
             const position = index % 2 === 0 ? 'left' : 'right';
             timelineItem.className = `timeline-item ${position}`;
-
             const content = document.createElement('div');
             content.className = 'timeline-content';
-
             const date = document.createElement('span');
             date.className = 'timeline-date';
-            date.textContent = item.period;
-
+            date.textContent = getLocalizedText(item.period, lang);
             const title = document.createElement('h3');
-            title.textContent = item.title;
-
+            title.textContent = getLocalizedText(item.title, lang);
             const subtitle = document.createElement('h4');
-            subtitle.textContent = item.subtitle;
-
+            subtitle.textContent = getLocalizedText(item.subtitle, lang);
             const description = document.createElement('p');
-            // Handle description as string or object (simpler than project handling for now)
-            if (typeof item.description === 'object') {
-                description.textContent = item.description[lang] || item.description['en'];
-            } else {
-                description.textContent = item.description;
-            }
-
+            description.textContent = getLocalizedText(item.description, lang);
             content.appendChild(date);
             content.appendChild(title);
             content.appendChild(subtitle);
             content.appendChild(description);
-
             timelineItem.appendChild(content);
             timelineContainer.appendChild(timelineItem);
-
             // Add content box to observer for animation
             observeElements([content]);
         });
@@ -336,63 +321,47 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             filteredProjects = projectsData;
         }
-
-        // Apply search filter
         if (projectSearchTerm) {
             filteredProjects = filteredProjects.filter(p =>
-                (p.name && p.name.toLowerCase().includes(projectSearchTerm))
+                (typeof p.name === 'object' ? getLocalizedText(p.name, lang) : p.name).toLowerCase().includes(projectSearchTerm)
             );
         }
-
-        // Pagination logic
         const totalPages = Math.ceil(filteredProjects.length / projectsPerPage) || 1;
         if (currentProjectPage > totalPages) currentProjectPage = totalPages;
         const startIdx = (currentProjectPage - 1) * projectsPerPage;
         const endIdx = startIdx + projectsPerPage;
         let displayProjects = filteredProjects.slice(startIdx, endIdx);
-
         if (filteredProjects.length === 0) {
-            projectsContainer.innerHTML = `<p style="text-align:center; width:100%; color: var(--text-muted);">No projects found for ${filter}.</p>`;
+            projectsContainer.innerHTML = `<p style="text-align:center; width:100%; color: var(--text-muted);">No projects found for ${filters.join(', ')}.</p>`;
             if (paginationDiv) paginationDiv.style.display = 'none';
             return;
         }
-
         displayProjects.forEach(project => {
-            // Change from 'a' to 'div' to support modal behavior
             const card = document.createElement('div');
             card.className = 'card reveal';
-            card.style.cursor = 'pointer'; // Make it look clickable
-            // Prevent repeated animation on re-render
+            card.style.cursor = 'pointer';
             if (project._wasRevealed) {
                 card.classList.add('active');
                 card.classList.remove('reveal');
             }
-            // Add click listener to open modal
             card.addEventListener('click', () => openProjectModal(project));
-            // 3D Tilt Effect logic
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                // Calculate rotation relative to center
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                // Max rotation: +/- 5 degrees
                 const rotateX = ((y - centerY) / centerY) * -5;
                 const rotateY = ((x - centerX) / centerX) * 5;
-                // Remove transition for instant response
                 card.style.transition = 'none';
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
             card.addEventListener('mouseleave', () => {
-                // Restore transition for smooth return
                 card.style.transition = 'transform 0.5s ease';
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
             });
             const title = document.createElement('h2');
-            title.textContent = project.name;
-
-            // Render Tech Stack
+            title.textContent = getLocalizedText(project.name, lang);
             const techContainer = document.createElement('div');
             techContainer.className = 'project-tech';
             if (project.technologies) {
@@ -403,29 +372,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     techContainer.appendChild(badge);
                 });
             }
-
             const description = document.createElement('p');
-            // Support both old string format (if any) and new object format
-            if (typeof project.description === 'object') {
-                description.textContent = project.description[lang] || project.description['en'];
-            } else {
-                description.textContent = project.description;
-            }
-
+            description.textContent = getLocalizedText(project.description, lang);
             const linkText = document.createElement('span');
             linkText.className = 'link-text';
             linkText.textContent = lang === 'it' ? 'Vedi Dettagli →' : 'View Details →';
-
             card.appendChild(title);
             card.appendChild(techContainer);
             card.appendChild(description);
             card.appendChild(linkText);
-
             projectsContainer.appendChild(card);
-
-            // Add to observer
             observer.observe(card);
-            // Mark as revealed after first reveal
             observer.unobserve(card);
             observer.observe(card);
             card.addEventListener('transitionend', () => {
@@ -434,8 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-
-        // Pagination controls
         if (paginationDiv) {
             if (filteredProjects.length > projectsPerPage) {
                 paginationDiv.style.display = '';
@@ -789,3 +744,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ...existing code...
 });
+
+function getLocalizedText(val, lang) {
+    if (typeof val === 'object' && val !== null) {
+        return val[lang] || val['en'] || Object.values(val)[0];
+    }
+    return val;
+}
