@@ -249,6 +249,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Project Search Clear Button Logic
+    const clearProjectSearchBtn = document.getElementById('clear-project-search');
+    if (projectSearchInput && clearProjectSearchBtn) {
+        function toggleClearBtn() {
+            clearProjectSearchBtn.style.display = projectSearchInput.value ? 'block' : 'none';
+        }
+        projectSearchInput.addEventListener('input', toggleClearBtn);
+        projectSearchInput.addEventListener('focus', toggleClearBtn);
+        projectSearchInput.addEventListener('blur', () => {
+            setTimeout(toggleClearBtn, 100); // Delay to allow click
+        });
+        clearProjectSearchBtn.addEventListener('click', () => {
+            projectSearchInput.value = '';
+            projectSearchInput.dispatchEvent(new Event('input'));
+            projectSearchInput.focus();
+            toggleClearBtn();
+        });
+        toggleClearBtn();
+    }
+
     function renderProjects(lang, filter = 'all') {
         projectsContainer.innerHTML = '';
         let filteredProjects = filter === 'all'
