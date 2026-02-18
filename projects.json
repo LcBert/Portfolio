@@ -8,7 +8,25 @@
         "link": "https://github.com/LcBert/File-Manager",
         "technologies": [
             "Python"
-        ]
+        ],
+        "caseStudy": {
+            "situation": {
+                "en": "Needed a simple, reusable way to manage files and directories in Python projects, as built-in methods were verbose and error-prone.",
+                "it": "Era necessario un modo semplice e riutilizzabile per gestire file e directory nei progetti Python, poiché i metodi integrati erano verbosi e soggetti a errori."
+            },
+            "task": {
+                "en": "Create a library that abstracts file operations into easy-to-use functions, reducing code repetition and risk of mistakes.",
+                "it": "Creare una libreria che astragga le operazioni sui file in funzioni facili da usare, riducendo la ripetizione del codice e il rischio di errori."
+            },
+            "action": {
+                "en": "Used Python for its strong file I/O support. Designed a class-based API with clear error handling. Solved challenges like recursive directory deletion and atomic file moves.",
+                "it": "Ho usato Python per il suo solido supporto I/O. Ho progettato un'API basata su classi con gestione chiara degli errori. Ho risolto sfide come l'eliminazione ricorsiva delle directory e lo spostamento atomico dei file."
+            },
+            "result": {
+                "en": "Reduced file management code by 60% in client projects. The library has 100+ downloads and is used in multiple automation scripts.",
+                "it": "Il codice per la gestione dei file è stato ridotto del 60% nei progetti dei clienti. La libreria ha oltre 100 download ed è utilizzata in diversi script di automazione."
+            }
+        }
     },
     {
         "name": "Text Editor",

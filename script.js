@@ -429,6 +429,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // --- Custom Case Study Section ---
+        let caseStudySection = document.getElementById('modal-case-study');
+        if (!caseStudySection) {
+            caseStudySection = document.createElement('div');
+            caseStudySection.id = 'modal-case-study';
+            caseStudySection.style.marginTop = '32px';
+            modal.querySelector('.modal-content').appendChild(caseStudySection);
+        }
+        if (project.caseStudy && typeof project.caseStudy === 'object') {
+            const cs = project.caseStudy;
+            let html = `<h3 style="margin-bottom:12px; color:var(--primary);">${lang === 'it' ? 'Case Study Approfondito' : 'Deep-Dive Case Study'}</h3>`;
+            for (const key of Object.keys(cs)) {
+                // Try to localize the key label if possible
+                let label = key;
+                if (lang === 'it') {
+                    if (key.toLowerCase() === 'situation') label = 'Situazione';
+                    else if (key.toLowerCase() === 'task') label = 'Compito';
+                    else if (key.toLowerCase() === 'action') label = 'Azione';
+                    else if (key.toLowerCase() === 'result') label = 'Risultato';
+                } else {
+                    // Capitalize first letter for English
+                    label = key.charAt(0).toUpperCase() + key.slice(1);
+                }
+                const value = cs[key]?.[lang] || cs[key]?.en || cs[key];
+                html += `<div style="margin-bottom:14px;"><strong>${label}:</strong><br>${value}</div>`;
+            }
+            caseStudySection.innerHTML = html;
+            caseStudySection.style.display = '';
+        } else {
+            caseStudySection.innerHTML = '';
+            caseStudySection.style.display = 'none';
+        }
         modal.style.display = "flex";
         // Trigger reflow
         void modal.offsetWidth;
@@ -709,4 +741,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "retina_detect": true
         });
     }
+
+    // ...existing code...
 });
