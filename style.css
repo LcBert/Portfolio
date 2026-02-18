@@ -311,12 +311,16 @@ h1 {
     color: var(--text-color);
     display: flex;
     flex-direction: column;
+    /* Prepare for 3D Tilt */
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
-/* Card Hover Animation */
+/* Card Hover Animation - modified to be handled by JS for tilt, 
+   but keep simple hover for non-js scenarios or as fallback */
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 20px var(--shadow-color);
+    box-shadow: 0 15px 30px var(--shadow-color);
+    /* transform handled by JS for tilt effect */
 }
 
 .card h2 {

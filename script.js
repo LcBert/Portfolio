@@ -250,6 +250,31 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add click listener to open modal
             card.addEventListener('click', () => openProjectModal(project));
 
+            // 3D Tilt Effect logic
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Calculate rotation relative to center
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                // Max rotation: +/- 5 degrees
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                // Remove transition for instant response
+                card.style.transition = 'none';
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Restore transition for smooth return
+                card.style.transition = 'transform 0.5s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+
             const title = document.createElement('h2');
             title.textContent = project.name;
 
