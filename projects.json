@@ -38,7 +38,8 @@
         },
         "link": "https://github.com/LcBert/File-Manager",
         "technologies": [
-            "Python"
+            "Python",
+            "Library"
         ],
         "caseStudy": {
             "situation": {

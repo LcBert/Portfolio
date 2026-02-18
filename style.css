@@ -346,12 +346,6 @@ h1 {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.card:hover .tech-badge {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: white;
-}
-
 .card p {
     color: var(--text-muted);
     line-height: 1.6;
