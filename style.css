@@ -815,3 +815,62 @@ footer {
     visibility: visible;
     transform: translateY(0);
 }
+
+/* 404 Page Styles */
+.page-404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--background, #181c1f);
+    color: var(--text, #e0e0e0);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+}
+
+.page-404 .error-container {
+    text-align: center;
+    padding: 40px 24px;
+}
+
+.page-404 .error-code {
+    font-size: 7rem;
+    font-weight: bold;
+    color: var(--primary, #27ae60);
+    margin-bottom: 0.2em;
+}
+
+.page-404 .error-message {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
+
+.page-404 .error-desc {
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+    color: var(--text-muted, #aaa);
+}
+
+.page-404 .back-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--primary, #27ae60);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.page-404 .back-btn:hover {
+    background: #219150;
+}
+
+.page-404 .emoji {
+    font-size: 3rem;
+    margin-bottom: 0.5em;
+    display: block;
+}
