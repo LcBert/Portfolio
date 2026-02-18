@@ -505,12 +505,6 @@ footer {
     position: relative;
 }
 
-.skill-card:hover {
-    transform: translateY(-5px);
-    background: var(--primary-color);
-    color: white;
-}
-
 .skill-card i {
     font-size: 1.2em;
 }

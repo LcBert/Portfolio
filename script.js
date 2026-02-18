@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let projectsData = [];
     let skillsData = [];
     let timelineData = [];
+    let showAllProjects = false;
+    const showAllBtn = document.getElementById('show-all-projects');
+    const showAllText = document.querySelector('#show-all-projects .show-all-text');
+    const showLessText = document.querySelector('#show-all-projects .show-less-text');
 
     // Scroll Reveal Animation Logic
     const observerOptions = {
@@ -229,19 +233,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFilter = 'all';
 
     function renderProjects(lang, filter = 'all') {
-        projectsContainer.innerHTML = ''; // Clear existing content
-
-        // Filter projects
-        const filteredProjects = filter === 'all'
+        projectsContainer.innerHTML = '';
+        let filteredProjects = filter === 'all'
             ? projectsData
             : projectsData.filter(p => p.technologies && p.technologies.includes(filter));
 
+        // Show only first 3 unless showAllProjects is true
+        let displayProjects = showAllProjects ? filteredProjects : filteredProjects.slice(0, 3);
+
         if (filteredProjects.length === 0) {
             projectsContainer.innerHTML = `<p style="text-align:center; width:100%; color: var(--text-muted);">No projects found for ${filter}.</p>`;
+            if (showAllBtn) showAllBtn.style.display = 'none';
             return;
         }
 
-        filteredProjects.forEach(project => {
+        displayProjects.forEach(project => {
             // Change from 'a' to 'div' to support modal behavior
             const card = document.createElement('div');
             card.className = 'card reveal';
@@ -311,6 +317,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add to observer
             observer.observe(card);
+        });
+
+        // Show or hide the Show All/Show Less button
+        if (showAllBtn) {
+            if (filteredProjects.length > 3) {
+                showAllBtn.style.display = '';
+                if (showAllProjects) {
+                    if (showAllText) showAllText.style.display = 'none';
+                    if (showLessText) showLessText.style.display = '';
+                } else {
+                    if (showAllText) showAllText.style.display = '';
+                    if (showLessText) showLessText.style.display = 'none';
+                }
+            } else {
+                showAllBtn.style.display = 'none';
+            }
+        }
+    }
+
+    if (showAllBtn) {
+        showAllBtn.addEventListener('click', () => {
+            showAllProjects = !showAllProjects;
+            renderProjects(languageSelector.value, document.querySelector('.filter-btn.active').dataset.filter);
         });
     }
 
