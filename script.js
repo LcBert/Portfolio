@@ -206,10 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filteredProjects.forEach(project => {
-            const card = document.createElement('a');
-            card.href = project.link;
-            card.className = 'card reveal'; // Added reveal class directly
-            card.target = '_blank'; // Open link in new tab
+            // Change from 'a' to 'div' to support modal behavior
+            const card = document.createElement('div');
+            card.className = 'card reveal';
+            card.style.cursor = 'pointer'; // Make it look clickable
+
+            // Add click listener to open modal
+            card.addEventListener('click', () => openProjectModal(project));
 
             const title = document.createElement('h2');
             title.textContent = project.name;
@@ -236,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const linkText = document.createElement('span');
             linkText.className = 'link-text';
-            linkText.textContent = lang === 'it' ? 'Vedi Progetto →' : 'View Project →';
+            linkText.textContent = lang === 'it' ? 'Vedi Dettagli →' : 'View Details →';
 
             card.appendChild(title);
             card.appendChild(techContainer);
@@ -248,6 +251,82 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add to observer
             observer.observe(card);
         });
+    }
+
+    // Modal Logic
+    const modal = document.getElementById("project-modal");
+    const span = document.getElementsByClassName("close-modal")[0];
+
+    function openProjectModal(project) {
+        if (!modal) return;
+
+        const lang = languageSelector.value;
+        const modalTitle = document.getElementById("modal-title");
+        const modalDesc = document.getElementById("modal-description");
+        const modalTech = document.getElementById("modal-tech-stack");
+        const repoLink = document.getElementById("modal-repo-link");
+        const repoSpan = repoLink ? repoLink.querySelector('span') : null;
+
+        if (modalTitle) modalTitle.textContent = project.name;
+
+        // Use long description if available, else short
+        let descText = "";
+        if (project.long_description) {
+            descText = (typeof project.long_description === 'object') ? (project.long_description[lang] || project.long_description['en']) : project.long_description;
+        } else {
+            descText = (typeof project.description === 'object') ? (project.description[lang] || project.description['en']) : project.description;
+        }
+
+        if (modalDesc) modalDesc.textContent = descText;
+
+        // Populate Tech Stack
+        if (modalTech) {
+            modalTech.innerHTML = '';
+            // Reset margin for modal context
+            if (project.technologies) {
+                project.technologies.forEach(tech => {
+                    const badge = document.createElement('span');
+                    badge.className = 'tech-badge';
+                    badge.textContent = tech;
+                    modalTech.appendChild(badge);
+                });
+            }
+        }
+
+        // Set Link
+        if (repoLink) {
+            repoLink.href = project.link;
+            if (repoSpan) {
+                repoSpan.textContent = lang === 'it' ? 'Vedi Codice' : 'View Code';
+            }
+        }
+
+        modal.style.display = "flex";
+        // Trigger reflow
+        void modal.offsetWidth;
+        modal.classList.add("show");
+    }
+
+    // Close Modal Logic
+    if (span) {
+        span.onclick = function () {
+            closeModal();
+        }
+    }
+
+    // Close when clicking outside
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove("show");
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300); // Wait for transition
     }
 
     function setupProjectFilters() {
